@@ -1,0 +1,5 @@
+{
+	"Settings": {
+		"ConnectionString": "Server=192.168.0.2;Port=5433;User Id=test;Password=test;Database=new_db;Pooling=true;MinPoolSize=1;MaxPoolSize=100;CommandTimeout=120;"
+	}
+}
