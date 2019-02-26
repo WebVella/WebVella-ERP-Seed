@@ -11,9 +11,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="WebVella.Erp" Version="1.0.7" />
+    <PackageReference Include="WebVella.Erp" Version="1.0.8" />
     <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.0.5" />
-    <PackageReference Include="WebVella.Erp.Web" Version="1.0.6" />
+    <PackageReference Include="WebVella.Erp.Web" Version="1.0.7" />
   </ItemGroup>
 
   <ItemGroup>
