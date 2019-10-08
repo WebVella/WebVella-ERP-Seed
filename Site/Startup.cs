@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
-using Microsoft.Net.Http.Headers;
-using Microsoft.AspNetCore.ResponseCompression;
-using System.IO.Compression;
-using WebVella.Erp.Web;
 using Microsoft.AspNetCore.Http;
-using WebVella.Erp.Web.Middleware;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
+using System;
+using System.Globalization;
+using System.IO.Compression;
 using WebVella.Erp.Plugins.SDK;
+using WebVella.Erp.Web;
+using WebVella.Erp.Web.Middleware;
 
 namespace Site
 {
@@ -33,11 +33,14 @@ namespace Site
 					options.Conventions.AuthorizeFolder("/");
 					options.Conventions.AllowAnonymousToPage("/login");
 				})
-				.AddJsonOptions(options =>
+				.AddNewtonsoftJson(options =>
 				{
 					options.SerializerSettings.Converters.Add(new ErpDateTimeJsonConverter());
 				});
 
+
+			services.AddControllersWithViews();
+			services.AddRazorPages();
 
 			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 					.AddCookie(options =>
@@ -61,7 +64,7 @@ namespace Site
 				DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(CultureInfo.GetCultureInfo("en-US"))
 			});
 
-			app.UseAuthentication();
+
 
 			app
 			.UseErpPlugin<SdkPlugin>()
@@ -85,6 +88,8 @@ namespace Site
 			//Should be before Static files
 			app.UseResponseCompression();
 
+			app.UseCors("AllowNodeJsLocalhost"); //Enable CORS -> should be before static files to enable for it too
+
 			app.UseStaticFiles(new StaticFileOptions
 			{
 				OnPrepareResponse = ctx =>
@@ -95,9 +100,14 @@ namespace Site
 				}
 			});
 
-			app.UseMvc(routes =>
+			app.UseRouting();
+			app.UseAuthentication();
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
 			{
-				routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapRazorPages();
+				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 			});
 		}
 	}
