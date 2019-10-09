@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Net.Http.Headers;
 using System;
 using System.Globalization;
 using System.IO.Compression;
@@ -20,10 +19,7 @@ namespace Site
 		{
 			services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 			services.AddResponseCompression(options => { options.Providers.Add<GzipCompressionProvider>(); });
-			services.AddRouting(options =>
-			{
-				options.LowercaseUrls = true;
-			});
+			services.AddRouting(options => { options.LowercaseUrls = true; });
 
 			services.AddDetectionCore().AddDevice();
 
@@ -46,7 +42,7 @@ namespace Site
 					.AddCookie(options =>
 					{
 						options.Cookie.HttpOnly = true;
-						options.Cookie.Name = "erp_auth";
+						options.Cookie.Name = "erp_auth_seed";
 						options.LoginPath = new PathString("/login");
 						options.LogoutPath = new PathString("/logout");
 						options.AccessDeniedPath = new PathString("/error?access_denied");
@@ -57,7 +53,7 @@ namespace Site
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			app.UseRequestLocalization(new RequestLocalizationOptions
 			{
@@ -90,15 +86,7 @@ namespace Site
 
 			app.UseCors("AllowNodeJsLocalhost"); //Enable CORS -> should be before static files to enable for it too
 
-			app.UseStaticFiles(new StaticFileOptions
-			{
-				OnPrepareResponse = ctx =>
-				{
-					const int durationInSeconds = 60 * 60 * 24 * 30; //30 days caching of these resources
-					ctx.Context.Response.Headers[HeaderNames.CacheControl] =
-						"public,max-age=" + durationInSeconds;
-				}
-			});
+			app.UseStaticFiles();
 
 			app.UseRouting();
 			app.UseAuthentication();

@@ -2,18 +2,18 @@
 
   <PropertyGroup>
 		<TargetFramework>netcoreapp3.0</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>Site</RootNamespace>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
-		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="WebVella.Erp" Version="1.0.80" />
-    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.0.80" />
-    <PackageReference Include="WebVella.Erp.Web" Version="1.0.80" />
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="WebVella.Erp" Version="1.0.85" />
+    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.0.85" />
+    <PackageReference Include="WebVella.Erp.Web" Version="1.0.85" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
   </ItemGroup>
 
