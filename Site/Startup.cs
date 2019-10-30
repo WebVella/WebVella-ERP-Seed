@@ -62,10 +62,6 @@ namespace Site
 
 
 
-			app
-			.UseErpPlugin<SdkPlugin>()
-			.UseErp()
-			.UseErpMiddleware();
 
 			// Add the following to the request pipeline only in development environment.
 			if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
@@ -91,6 +87,12 @@ namespace Site
 			app.UseRouting();
 			app.UseAuthentication();
 			app.UseAuthorization();
+
+			app
+			.UseErpPlugin<SdkPlugin>()
+			.UseErp()
+			.UseErpMiddleware();
+
 
 			app.UseEndpoints(endpoints =>
 			{
