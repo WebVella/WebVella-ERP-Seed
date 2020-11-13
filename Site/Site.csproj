@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="WebVella.Erp" Version="1.1.1" />
-    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.0.105" />
-    <PackageReference Include="WebVella.Erp.Web" Version="1.1.9" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
+    <PackageReference Include="WebVella.Erp" Version="1.1.9" />
+    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.1.5" />
+    <PackageReference Include="WebVella.Erp.Web" Version="1.1.23" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
