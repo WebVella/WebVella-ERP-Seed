@@ -6,10 +6,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="WebVella.Erp" Version="1.1.9" />
-    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.1.5" />
-    <PackageReference Include="WebVella.Erp.Web" Version="1.1.23" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
+    <PackageReference Include="WebVella.Erp" Version="1.1.13" />
+    <PackageReference Include="WebVella.Erp.Plugins.SDK" Version="1.1.10" />
+    <PackageReference Include="WebVella.Erp.Web" Version="1.1.28" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
